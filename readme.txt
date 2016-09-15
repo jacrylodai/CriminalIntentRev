@@ -1,0 +1,10 @@
+*完成CrimeFragment,CrimeActivity
+*完成CrimeListActivity,CrimeListFragment
+*启动CrimeActivity传递参数，简单方式
+*启动CrimeActivity传递参数，复杂方式
+*完成CrimePagerActivity,使用ViewPager作为其显示控件，支持滑动切换
+*完成DatePickerDialogFragment,完成日期的选择
+*完成Add crime菜单项，完成CrimeFragment返回到父activity
+*显示及隐藏子标题
+×实现SharedPreferences持久化保存数据
+×完成拍照，保存照片，显示照片
