@@ -4,29 +4,39 @@
     <string name="app_name">CrimeIntentRev</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    
+
     <!-- fragment_crime -->
     <string name="hint_et_crime_title">Enter a title for this crime.</string>
     <string name="string_cb_crime_solved">Solved?</string>
     <string name="string_tv_crime_title_desc">Title</string>
     <string name="string_tv_crime_details_desc">Details</string>
+    <string name="string_tv_crime_suspect_info">Suspect Info</string>
     <string name="string_ib_crime_take_picture">Take picture by click this button</string>
+    <string name="string_crime_choose_suspect">Choose Suspect</string>
+    <string name="string_crime_send_crime_report">Send Crime Report</string>
     
+    <string name="crime_report">%1$s!The crime was discovered on %2$s. %3$s, and %4$s</string>
+    <string name="crime_report_solved">The case is solved</string>
+    <string name="crime_report_unsolved">The case is not solved</string>
+    <string name="crime_report_no_suspect">There is no suspect.</string>
+    <string name="crime_report_suspect">The suspect is %s.</string>
+    <string name="crime_report_subject">CriminalIntent Crime Report</string>
+    <string name="send_report">Send crime report via</string>
+
     <!-- fragment_date_picker -->
     <string name="title_date_picker">Date Picker</string>
-    
+
     <!-- fragment_crime_list -->
     <string name="subtitle_record_crime">If you see something.Just record it down.</string>
-    
+
     <!-- fragment_crime_camera -->
     <string name="string_button_take">Take!</string>
-    
+
     <!-- menu -->
     <!-- fragment_crime_list -->
     <string name="string_menu_item_add_crime">Add Crime</string>
     <string name="string_menu_item_show_subtitle">Show Subtitle</string>
     <string name="string_menu_item_hide_subtitle">Hide Subtitle</string>
-	
     <string name="string_menu_item_delete_crime">Delete Crime</string>
 
 </resources>

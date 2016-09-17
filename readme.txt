@@ -8,3 +8,4 @@
 *显示及隐藏子标题
 ×实现SharedPreferences持久化保存数据
 ×完成拍照，保存照片，显示照片
+×完成发送Crime report，Choose suspect，发送报告，选择联系人

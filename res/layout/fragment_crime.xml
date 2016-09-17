@@ -85,5 +85,39 @@
         android:layout_marginRight="16dp"
         android:text="@string/string_cb_crime_solved"
         />
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="?android:attr/listSeparatorTextViewStyle"
+        android:text="@string/string_tv_crime_suspect_info"
+        />
+    
+    <TextView 
+        android:id="@+id/tv_crime_suspect_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="?android:attr/autoCompleteTextViewStyle"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        />
+    
+    <Button 
+        android:id="@+id/button_crime_choose_suspect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:text="@string/string_crime_choose_suspect"
+        />
+    
+    <Button 
+        android:id="@+id/button_crime_send_crime_report"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:text="@string/string_crime_send_crime_report"
+        />
 
 </LinearLayout>

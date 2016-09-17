@@ -10,7 +10,7 @@ public class Photo {
 	private String fileName;
 	
 	public Photo(){
-		
+		fileName = "";
 	}
 	
 	public Photo(JSONObject jsonObject) throws JSONException{
