@@ -9,12 +9,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 
 import com.bignerdranch.android.crimeintentrev.R;
 import com.bignerdranch.android.crimeintentrev.domain.Crime;
 import com.bignerdranch.android.crimeintentrev.fragment.CrimeFragment;
 import com.bignerdranch.android.crimeintentrev.utils.CrimeLab;
+import com.bignerdranch.android.crimeintentrev.utils.LogUtil;
 
 public class CrimePagerActivity extends ActionBarActivity {
 	
@@ -55,7 +55,7 @@ public class CrimePagerActivity extends ActionBarActivity {
 				
 		//set current position
 		UUID crimeId = (UUID) getIntent().getSerializableExtra(CrimeFragment.EXTRA_CRIME_ID);
-		Log.d(TAG, "crimeId:"+crimeId);
+		LogUtil.d(TAG, "crimeId:"+crimeId);
 		
 		int currPosition = 0;
 		for(int i=0;i<crimeList.size();i++){
@@ -67,7 +67,7 @@ public class CrimePagerActivity extends ActionBarActivity {
 			}
 		}
 		
-//		Log.d(TAG, "currPosition:"+currPosition);		
+//		LogUtil.d(TAG, "currPosition:"+currPosition);		
 		viewPager.setCurrentItem(currPosition);
 		
 		//set current crime title
@@ -76,7 +76,7 @@ public class CrimePagerActivity extends ActionBarActivity {
 			@Override
 			public void onPageSelected(int position) {
 
-				Log.d(TAG,"onPageSelected--->> position:"+position);
+				LogUtil.d(TAG,"onPageSelected--->> position:"+position);
 				
 				Crime crime = crimeList.get(position);
 				CrimePagerActivity.this.setTitle(crime.getCrimeTitle());
@@ -85,14 +85,14 @@ public class CrimePagerActivity extends ActionBarActivity {
 			@Override
 			public void onPageScrolled(int pos, float posOffset, int posOffsetPixels) {
 				
-//				Log.d(TAG,"onPageScrolled--->> pos:"+pos+".posOffset:"+posOffset
+//				LogUtil.d(TAG,"onPageScrolled--->> pos:"+pos+".posOffset:"+posOffset
 //						+".posOffsetPixels:"+posOffsetPixels);
 			}
 			
 			@Override
 			public void onPageScrollStateChanged(int state) {
 				
-//				Log.d(TAG,"onPageScrollStateChanged--->> state:"+state);
+//				LogUtil.d(TAG,"onPageScrollStateChanged--->> state:"+state);
 			}
 		});
 	}

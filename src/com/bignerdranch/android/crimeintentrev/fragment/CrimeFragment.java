@@ -22,7 +22,6 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,11 +29,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.TextView;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bignerdranch.android.crimeintentrev.R;
@@ -42,6 +41,7 @@ import com.bignerdranch.android.crimeintentrev.activity.CrimeCameraActivity;
 import com.bignerdranch.android.crimeintentrev.domain.Crime;
 import com.bignerdranch.android.crimeintentrev.domain.Photo;
 import com.bignerdranch.android.crimeintentrev.utils.CrimeLab;
+import com.bignerdranch.android.crimeintentrev.utils.LogUtil;
 import com.bignerdranch.android.crimeintentrev.utils.PackageManagerUtils;
 import com.bignerdranch.android.crimeintentrev.utils.PictureUtils;
 
@@ -84,12 +84,12 @@ public class CrimeFragment extends Fragment{
 		
 		setHasOptionsMenu(true);
 		
-		Log.d(TAG, "onCreate");
+		LogUtil.d(TAG, "onCreate");
 		
 		UUID crimeId = (UUID) getArguments().getSerializable(EXTRA_CRIME_ID);
 		crime = CrimeLab.getInstance(getActivity()).getCrimeById(crimeId);
 		
-		Log.d(TAG, crime.getCrimeTitle());
+		LogUtil.d(TAG, crime.getCrimeTitle());
 	}
 	
 	@TargetApi(11)
@@ -97,7 +97,7 @@ public class CrimeFragment extends Fragment{
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-		Log.d(TAG, "onCreateView");
+		LogUtil.d(TAG, "onCreateView");
 		
 		View view = inflater.inflate(R.layout.fragment_crime, container, false);
 		
@@ -302,7 +302,7 @@ public class CrimeFragment extends Fragment{
 			if(resultCode == Activity.RESULT_OK){
 				
 				Uri contactUri = data.getData();
-				Log.d(TAG, "suspect uri:"+contactUri.toString());
+				LogUtil.d(TAG, "suspect uri:"+contactUri.toString());
 				
 				String contactNameField = ContactsContract.Contacts.DISPLAY_NAME;
 				String[] queryFields = new String[]{ contactNameField };

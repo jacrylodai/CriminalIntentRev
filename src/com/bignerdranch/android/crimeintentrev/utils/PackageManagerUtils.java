@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.util.Log;
 
 public class PackageManagerUtils {
 	
@@ -23,7 +22,7 @@ public class PackageManagerUtils {
 		PackageManager pm = context.getPackageManager();
 		List<ResolveInfo> resolveInfosList = pm.queryIntentActivities(intent, 0);
 		int size = resolveInfosList.size();
-		Log.d(TAG, "resolveInfo size:"+size);
+		LogUtil.d(TAG, "resolveInfo size:"+size);
 		
 		if(size>0){
 			return true;

@@ -13,11 +13,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 
 import com.bignerdranch.android.crimeintentrev.R;
+import com.bignerdranch.android.crimeintentrev.utils.LogUtil;
 
 public class DatePickerDialogFragment extends DialogFragment{
 	
@@ -35,7 +35,7 @@ public class DatePickerDialogFragment extends DialogFragment{
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 
 		crimeDate = (Date) getArguments().getSerializable(EXTRA_CRIME_DATE);
-		Log.d(TAG, "onCreateDialog--->> init crimeDate:"+crimeDate);
+		LogUtil.d(TAG, "onCreateDialog--->> init crimeDate:"+crimeDate);
 		
 		View view = getActivity().getLayoutInflater().inflate(
 				R.layout.fragment_dialog_date_picker, null);
@@ -56,7 +56,7 @@ public class DatePickerDialogFragment extends DialogFragment{
 
 				Calendar calendar = new GregorianCalendar(year, monthOfYear, dayOfMonth);
 				crimeDate = calendar.getTime();
-				Log.d(TAG, "you choose date:"+calendar.getTime());
+				LogUtil.d(TAG, "you choose date:"+calendar.getTime());
 				
 				getArguments().putSerializable(EXTRA_CRIME_DATE, crimeDate);
 			}

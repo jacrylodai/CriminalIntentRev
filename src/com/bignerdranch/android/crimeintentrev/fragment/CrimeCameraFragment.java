@@ -16,7 +16,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -25,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.bignerdranch.android.crimeintentrev.R;
+import com.bignerdranch.android.crimeintentrev.utils.LogUtil;
 
 public class CrimeCameraFragment extends Fragment {
 	
@@ -43,7 +43,7 @@ public class CrimeCameraFragment extends Fragment {
 		
 		@Override
 		public void onShutter() {
-			flCrimeCameraBlock.setVisibility(View.VISIBLE);
+			//do nothing
 		}
 	};
 	
@@ -64,7 +64,7 @@ public class CrimeCameraFragment extends Fragment {
 				bos.write(data);
 			} catch (IOException e) {
 				e.printStackTrace();
-				Log.d(TAG, "Error save picture", e);
+				LogUtil.d(TAG, "Error save picture", e);
 				isSuccess = false;
 			} finally{
 				if(bos != null){
@@ -72,14 +72,14 @@ public class CrimeCameraFragment extends Fragment {
 						bos.close();
 					} catch (IOException e) {
 						e.printStackTrace();
-						Log.d(TAG, "Error closing picture file", e);
+						LogUtil.d(TAG, "Error closing picture file", e);
 						isSuccess = false;
 					}
 				}
 			}
 			
 			if(isSuccess){
-				Log.d(TAG, "Success save picture to file:"+fileName);
+				LogUtil.d(TAG, "Success save picture to file:"+fileName);
 				
 				Intent intent = new Intent();
 				intent.putExtra(EXTRA_PICTURE_FILENAME, fileName);
@@ -108,7 +108,7 @@ public class CrimeCameraFragment extends Fragment {
 			@Override
 			public void surfaceDestroyed(SurfaceHolder holder) {
 
-				Log.d(TAG, "surfaceDestroyed");
+				LogUtil.d(TAG, "surfaceDestroyed");
 				if(mCamera != null){
 					mCamera.stopPreview();
 				}
@@ -117,13 +117,13 @@ public class CrimeCameraFragment extends Fragment {
 			@Override
 			public void surfaceCreated(SurfaceHolder holder) {
 
-				Log.d(TAG, "surfaceCreated");
+				LogUtil.d(TAG, "surfaceCreated");
 				try{
 					if(mCamera != null){
 						mCamera.setPreviewDisplay(holder);
 					}
 				}catch(IOException ex){
-					Log.d(TAG, "Error setting up preview display", ex);
+					LogUtil.d(TAG, "Error setting up preview display", ex);
 				}
 			}
 			
@@ -131,7 +131,7 @@ public class CrimeCameraFragment extends Fragment {
 			public void surfaceChanged(SurfaceHolder holder, int format, int width,
 					int height) {
 
-				Log.d(TAG, "surfaceChanged");
+				LogUtil.d(TAG, "surfaceChanged");
 				if(mCamera == null){
 					return;
 				}
@@ -148,7 +148,7 @@ public class CrimeCameraFragment extends Fragment {
 				try{
 					mCamera.startPreview();
 				}catch(Exception ex){
-					Log.d(TAG, "Could not start preview",ex);
+					LogUtil.d(TAG, "Could not start preview",ex);
 					if(mCamera !=null){
 						mCamera.release();
 						mCamera = null;
@@ -164,6 +164,7 @@ public class CrimeCameraFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				if(mCamera != null){
+					flCrimeCameraBlock.setVisibility(View.VISIBLE);
 					mCamera.takePicture(shutterCallback, null ,jpegCallback);
 				}
 			}
@@ -197,12 +198,12 @@ public class CrimeCameraFragment extends Fragment {
 	
 	private Size getBestSupportedSize(List<Size> sizeList,int width,int height){
 		
-		Log.d(TAG, "getBestSize");
+		LogUtil.d(TAG, "getBestSize");
 		
 		Size largestSize = null;
 		int largestArea = 0;
 		for(Size size:sizeList){
-			Log.d(TAG, "size--> width:"+width+"  height:"+height);
+			LogUtil.d(TAG, "size--> width:"+width+"  height:"+height);
 			int area = size.width * size.height;
 			if(area > largestArea){
 				largestSize = size;

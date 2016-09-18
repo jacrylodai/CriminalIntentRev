@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.Display;
 import android.widget.ImageView;
 
@@ -35,11 +34,11 @@ public class PictureUtils {
 		int inSampleSize = 1;
 		if( (srcWidth > desWidth) || (srcHeight > desHeight) ){
 			int widthSampleSize = Math.round(srcWidth/desWidth);
-			Log.d(TAG, "srcWidth:"+srcWidth+"--desWidth:"+desWidth
+			LogUtil.d(TAG, "srcWidth:"+srcWidth+"--desWidth:"+desWidth
 					+"--widthSampleSize:"+widthSampleSize);
 			
 			int heightSampleSize = Math.round(srcHeight/desHeight);
-			Log.d(TAG, "srcHeight:"+srcHeight+"--desHeight:"+desHeight
+			LogUtil.d(TAG, "srcHeight:"+srcHeight+"--desHeight:"+desHeight
 					+"--heightSampleSize:"+heightSampleSize);
 			
 			if(widthSampleSize > heightSampleSize){

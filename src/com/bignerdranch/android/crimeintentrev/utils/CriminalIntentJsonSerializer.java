@@ -1,20 +1,14 @@
 package com.bignerdranch.android.crimeintentrev.utils;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.http.util.ByteArrayBuffer;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,7 +16,6 @@ import org.json.JSONTokener;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 
 import com.bignerdranch.android.crimeintentrev.domain.Crime;
 
@@ -53,8 +46,8 @@ public class CriminalIntentJsonSerializer {
 		}
 		
 		String jsonString = jsonArray.toString();
-		Log.d(TAG, "write json to file");
-		Log.d(TAG, jsonString);
+		LogUtil.d(TAG, "write json to file");
+		LogUtil.d(TAG, jsonString);
 		
 		BufferedWriter bufferedWriter = null;
 		try {
@@ -82,8 +75,8 @@ public class CriminalIntentJsonSerializer {
 			fis = context.openFileInput(DATA_FILE_NAME);
 		
 			String jsonString = StreamTools.readFromStream(fis, "UTF-8");
-			Log.d(TAG, "read from file");
-			Log.d(TAG, jsonString);
+			LogUtil.d(TAG, "read from file");
+			LogUtil.d(TAG, jsonString);
 			
 			JSONArray jsonArray = new JSONArray(new JSONTokener(jsonString));
 			

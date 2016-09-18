@@ -4,10 +4,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 
 import com.bignerdranch.android.crimeintentrev.R;
-import com.bignerdranch.android.crimeintentrev.fragment.CrimeFragment;
 
 public abstract class SingleFragmentActivity extends ActionBarActivity {
 	

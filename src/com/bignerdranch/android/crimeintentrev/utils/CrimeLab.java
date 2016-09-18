@@ -8,7 +8,6 @@ import java.util.UUID;
 import org.json.JSONException;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.bignerdranch.android.crimeintentrev.domain.Crime;
 
@@ -26,7 +25,7 @@ public class CrimeLab {
 	
 	private CrimeLab(Context context){
 		
-		Log.d(TAG, "inital CrimeLab");
+		LogUtil.d(TAG, "inital CrimeLab");
 		applicationContext = context.getApplicationContext();
 		
 		criminalIntentJsonSerializer = new CriminalIntentJsonSerializer(applicationContext);
@@ -34,11 +33,11 @@ public class CrimeLab {
 			crimeList = criminalIntentJsonSerializer.loadCrimeList();
 		} catch (IOException e) {
 			e.printStackTrace();
-			Log.d(TAG, "json read error",e);
+			LogUtil.d(TAG, "json read error",e);
 			crimeList = new ArrayList<Crime>();
 		} catch (JSONException e) {
 			e.printStackTrace();
-			Log.d(TAG, "json read error",e);
+			LogUtil.d(TAG, "json read error",e);
 			crimeList = new ArrayList<Crime>();
 		}
 	}
@@ -72,15 +71,15 @@ public class CrimeLab {
 		
 		try {
 			criminalIntentJsonSerializer.saveCrimeList(crimeList);
-			Log.d(TAG, "crime list save to file");
+			LogUtil.d(TAG, "crime list save to file");
 			return true;
 		} catch (JSONException e) {
 			e.printStackTrace();
-			Log.d(TAG, "crime save error",e);
+			LogUtil.d(TAG, "crime save error",e);
 			return false;
 		} catch (IOException e) {
 			e.printStackTrace();
-			Log.d(TAG, "crime save error",e);
+			LogUtil.d(TAG, "crime save error",e);
 			return false;
 		}
 	}

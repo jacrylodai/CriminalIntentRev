@@ -8,10 +8,9 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
+import android.view.ActionMode;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -28,6 +27,7 @@ import com.bignerdranch.android.crimeintentrev.activity.CrimePagerActivity;
 import com.bignerdranch.android.crimeintentrev.domain.Crime;
 import com.bignerdranch.android.crimeintentrev.domain.CrimeListAdapter;
 import com.bignerdranch.android.crimeintentrev.utils.CrimeLab;
+import com.bignerdranch.android.crimeintentrev.utils.LogUtil;
 
 public class CrimeListFragment extends ListFragment{
 	
@@ -139,7 +139,7 @@ public class CrimeListFragment extends ListFragment{
 		
 		ArrayAdapter<Crime> adapter = (ArrayAdapter<Crime>) l.getAdapter();
 		Crime crime = adapter.getItem(position);
-		Log.d(TAG, "you choose crime item :"+crime.getCrimeTitle());
+		LogUtil.d(TAG, "you choose crime item :"+crime.getCrimeTitle());
 		
 		UUID crimeId = crime.getCrimeId();
 		
