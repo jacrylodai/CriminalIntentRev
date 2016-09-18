@@ -12,3 +12,4 @@
 ×检查隐式intent是否能安全启动，如不能，则禁用相应的功能
 *改bug，照片保存失败时显示toast提示
 *加入LogUtil，对日志记录自由定制
+*改bug，添加CrimeFragment横向布局
