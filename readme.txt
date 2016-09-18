@@ -9,3 +9,4 @@
 ×实现SharedPreferences持久化保存数据
 ×完成拍照，保存照片，显示照片
 ×完成发送Crime report，Choose suspect，发送报告，选择联系人
+×检查隐式intent是否能安全启动，如不能，则禁用相应的功能

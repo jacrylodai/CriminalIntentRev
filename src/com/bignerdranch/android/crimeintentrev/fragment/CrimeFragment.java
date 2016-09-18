@@ -41,6 +41,7 @@ import com.bignerdranch.android.crimeintentrev.activity.CrimeCameraActivity;
 import com.bignerdranch.android.crimeintentrev.domain.Crime;
 import com.bignerdranch.android.crimeintentrev.domain.Photo;
 import com.bignerdranch.android.crimeintentrev.utils.CrimeLab;
+import com.bignerdranch.android.crimeintentrev.utils.PackageManagerUtils;
 import com.bignerdranch.android.crimeintentrev.utils.PictureUtils;
 
 public class CrimeFragment extends Fragment{
@@ -206,6 +207,14 @@ public class CrimeFragment extends Fragment{
 		
 		buttonCrimeChooseSuspect = 
 				(Button) view.findViewById(R.id.button_crime_choose_suspect);
+
+		Intent chooseSuspectIntent = new Intent(Intent.ACTION_PICK
+				,ContactsContract.Contacts.CONTENT_URI);
+		boolean isChooseIntentSafe = 
+				PackageManagerUtils.isIntentLaunchSafe(getActivity(), chooseSuspectIntent);
+		if(false == isChooseIntentSafe){
+			buttonCrimeChooseSuspect.setEnabled(false);
+		}
 		buttonCrimeChooseSuspect.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -219,6 +228,15 @@ public class CrimeFragment extends Fragment{
 		
 		Button buttonCrimeSendCrimeReport =
 				(Button) view.findViewById(R.id.button_crime_send_crime_report);
+		
+		Intent sendCrimeReportIntent = new Intent(Intent.ACTION_SEND);
+		sendCrimeReportIntent.setType("text/plain");
+		boolean isSendIntentSafe = 
+				PackageManagerUtils.isIntentLaunchSafe(getActivity(), sendCrimeReportIntent);
+		if(false == isSendIntentSafe){
+			buttonCrimeSendCrimeReport.setEnabled(false);
+		}
+				
 		buttonCrimeSendCrimeReport.setOnClickListener(new View.OnClickListener() {
 			
 			@Override

@@ -26,6 +26,11 @@ import android.util.Log;
 
 import com.bignerdranch.android.crimeintentrev.domain.Crime;
 
+/**
+ * Crime Json序列化工具类
+ * @author jacrylodai
+ *
+ */
 public class CriminalIntentJsonSerializer {
 	
 	private static final String TAG = "CriminalIntentJsonSerializer";

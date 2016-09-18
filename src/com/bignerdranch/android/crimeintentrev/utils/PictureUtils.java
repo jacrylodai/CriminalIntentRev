@@ -13,6 +13,12 @@ public class PictureUtils {
 	
 	private static final String TAG = "PictureUtils";
 
+	/**
+	 * 图片压缩加载到BitmapDrawable，把图片尺寸和屏幕尺寸进行对比，进行压缩
+	 * @param activity
+	 * @param filePath
+	 * @return
+	 */
 	public static BitmapDrawable getScaledDrawable(Activity activity,String filePath){
 		
 		Display display = activity.getWindowManager().getDefaultDisplay();
@@ -50,6 +56,10 @@ public class PictureUtils {
 		return new BitmapDrawable(activity.getResources(), bitmap);
 	}
 	
+	/**
+	 * 主动释放imageView中的图片占用的内存空间
+	 * @param imageView
+	 */
 	public static void cleanImageView(ImageView imageView){
 		
 		Drawable drawable = imageView.getDrawable();
