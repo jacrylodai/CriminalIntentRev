@@ -35,6 +35,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bignerdranch.android.crimeintentrev.R;
 import com.bignerdranch.android.crimeintentrev.activity.CrimeCameraActivity;
@@ -289,6 +290,10 @@ public class CrimeFragment extends Fragment{
 				photo.setFileName(fileName);
 				
 				showPhoto();
+			}else{
+				
+				Toast.makeText(getActivity(), R.string.toast_error_save_photo, Toast.LENGTH_SHORT)
+					.show();
 			}
 			break;
 			
