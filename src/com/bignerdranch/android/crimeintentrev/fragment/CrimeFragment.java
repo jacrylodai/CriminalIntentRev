@@ -78,6 +78,14 @@ public class CrimeFragment extends Fragment{
 	
 	private Button buttonCrimeChooseSuspect;
 	
+	private OnCrimeUpdateCallback onCrimeUpdateCallback;
+	
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		onCrimeUpdateCallback = (OnCrimeUpdateCallback)activity;
+	}
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -117,6 +125,8 @@ public class CrimeFragment extends Fragment{
 				String content = s.toString();
 				
 				crime.setCrimeTitle(content);
+				
+				onCrimeUpdateCallback.onCrimeUpdate();
 			}
 			
 			@Override
@@ -158,6 +168,7 @@ public class CrimeFragment extends Fragment{
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
 				crime.setCrimeSolved(isChecked);
+				onCrimeUpdateCallback.onCrimeUpdate();
 			}
 			
 		});
@@ -277,6 +288,7 @@ public class CrimeFragment extends Fragment{
 						DatePickerDialogFragment.EXTRA_CRIME_DATE);
 				crime.setCrimeDate(crimeDate);
 				updateUICrimeDate();
+				onCrimeUpdateCallback.onCrimeUpdate();
 			}
 			break;
 
@@ -288,6 +300,8 @@ public class CrimeFragment extends Fragment{
 						data.getStringExtra(CrimeCameraFragment.EXTRA_PICTURE_FILENAME);
 				Photo photo = crime.getPhoto();
 				photo.setFileName(fileName);
+				
+				onCrimeUpdateCallback.onCrimeUpdate();
 				
 				showPhoto();
 			}else{
@@ -314,6 +328,9 @@ public class CrimeFragment extends Fragment{
 					String contactName = 
 							cursor.getString(cursor.getColumnIndex(contactNameField));
 					crime.setSuspect(contactName);
+
+					onCrimeUpdateCallback.onCrimeUpdate();
+					
 					showSuspect();
 				}
 				
@@ -360,6 +377,12 @@ public class CrimeFragment extends Fragment{
 	public void onStop() {
 		super.onStop();
 		PictureUtils.cleanImageView(ivCrimePhoto);
+	}
+	
+	@Override
+	public void onDetach() {
+		super.onDetach();
+		onCrimeUpdateCallback = null;
 	}
 	
 	private void showPhoto(){
@@ -414,6 +437,16 @@ public class CrimeFragment extends Fragment{
 				getString(R.string.crime_report,crime.getCrimeTitle()
 						,dateString,solvedString,suspectString);
 		return finalReport;
+	}
+	
+	/**
+	 * crime更新时回调函数，由托管Activity实现接口
+	 * @author jacrylodai
+	 *
+	 */
+	public interface OnCrimeUpdateCallback{
+		
+		public void onCrimeUpdate();
 	}
 	
 }

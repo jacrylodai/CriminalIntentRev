@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -36,6 +37,14 @@ public class CrimeListFragment extends ListFragment{
 	private static final String IS_SHOW_SUBTITLE_KEY = "isShowSubtitleKey";
 	
 	private boolean isShowSubtitle;	
+	
+	private OnCrimeSelectedCallback onCrimeSelectedCallback;
+	
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		onCrimeSelectedCallback = (OnCrimeSelectedCallback)activity;
+	}
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -141,11 +150,7 @@ public class CrimeListFragment extends ListFragment{
 		Crime crime = adapter.getItem(position);
 		LogUtil.d(TAG, "you choose crime item :"+crime.getCrimeTitle());
 		
-		UUID crimeId = crime.getCrimeId();
-		
-		Intent intent = new Intent(getActivity(),CrimePagerActivity.class);
-		intent.putExtra(CrimeFragment.EXTRA_CRIME_ID, crimeId);
-		startActivity(intent);
+		onCrimeSelectedCallback.onCrimeSelected(crime);
 	}
 	
 	@Override
@@ -154,6 +159,18 @@ public class CrimeListFragment extends ListFragment{
 
 		ArrayAdapter<Crime> adapter = (ArrayAdapter<Crime>) getListAdapter();
 		adapter.notifyDataSetChanged();
+	}
+	
+	@Override
+	public void onDetach() {
+		super.onDetach();
+		onCrimeSelectedCallback = null;
+	}
+	
+	public void updateUI(){
+		
+		CrimeListAdapter crimeListAdapter = (CrimeListAdapter)getListAdapter();
+		crimeListAdapter.notifyDataSetChanged();
 	}
 	
 	@Override
@@ -203,9 +220,7 @@ public class CrimeListFragment extends ListFragment{
 			Crime crime = new Crime();
 			CrimeLab.getInstance(getActivity()).addCrime(crime);
 			
-			Intent intent = new Intent(getActivity(),CrimePagerActivity.class);
-			intent.putExtra(CrimeFragment.EXTRA_CRIME_ID, crime.getCrimeId());
-			startActivity(intent);
+			onCrimeSelectedCallback.onCrimeSelected(crime);
 			
 			return true;
 			
@@ -255,6 +270,18 @@ public class CrimeListFragment extends ListFragment{
 	public void onPause() {
 		super.onPause();
 		CrimeLab.getInstance(getActivity()).saveCrimeList();
+	}
+	
+	/**
+	 * crime被点击的监听接口，把crime被点击后Fragment的处理交给托管Activity，
+	 * 由托管Activity尽上自己的责任
+	 * @author jacrylodai
+	 *
+	 */
+	public interface OnCrimeSelectedCallback{
+		
+		public void onCrimeSelected(Crime crime);
+		
 	}
 	
 }
