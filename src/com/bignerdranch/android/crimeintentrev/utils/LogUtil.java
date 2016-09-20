@@ -41,14 +41,14 @@ public class LogUtil {
 	public static void d(String tag,String msg){
 		
 		if(CURR_LEVEL <= DEBUG){
-			Log.i(tag, msg);
+			Log.d(tag, msg);
 		}
 	}
 
 	public static void d(String tag,String msg,Throwable tr){
 		
 		if(CURR_LEVEL <= DEBUG){
-			Log.i(tag, msg,tr);
+			Log.d(tag, msg,tr);
 		}
 	}
 
