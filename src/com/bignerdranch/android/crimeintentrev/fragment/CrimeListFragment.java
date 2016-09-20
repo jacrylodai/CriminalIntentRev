@@ -219,6 +219,9 @@ public class CrimeListFragment extends ListFragment{
 			
 			Crime crime = new Crime();
 			CrimeLab.getInstance(getActivity()).addCrime(crime);
+
+			CrimeListAdapter adapter = (CrimeListAdapter) getListAdapter();
+			adapter.notifyDataSetChanged();
 			
 			onCrimeSelectedCallback.onCrimeSelected(crime);
 			

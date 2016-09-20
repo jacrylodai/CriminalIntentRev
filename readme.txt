@@ -14,3 +14,5 @@
 *加入LogUtil，对日志记录自由定制
 *改bug，添加CrimeFragment横向布局
 *初步完成自动双版主从页与单版页面使用，完成相应功能
+*修改bug，增加最小宽度限定符，宽度限定符，菜单新增crime时更新列表，
+	CrimeFragment所有的托管Activity必须实现OnCrimeUpdateCallback接口

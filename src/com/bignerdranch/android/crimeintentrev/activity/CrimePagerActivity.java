@@ -16,7 +16,8 @@ import com.bignerdranch.android.crimeintentrev.fragment.CrimeFragment;
 import com.bignerdranch.android.crimeintentrev.utils.CrimeLab;
 import com.bignerdranch.android.crimeintentrev.utils.LogUtil;
 
-public class CrimePagerActivity extends ActionBarActivity {
+public class CrimePagerActivity extends ActionBarActivity 
+	implements CrimeFragment.OnCrimeUpdateCallback{
 	
 	private static final String TAG = "CrimePagerActivity";
 
@@ -95,6 +96,12 @@ public class CrimePagerActivity extends ActionBarActivity {
 //				LogUtil.d(TAG,"onPageScrollStateChanged--->> state:"+state);
 			}
 		});
+	}
+
+	@Override
+	public void onCrimeUpdate() {
+
+		//不做任何事情，CrimeListFragment.onResume会进行更新
 	}
 	
 }
